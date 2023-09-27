@@ -2,7 +2,11 @@
   "name": "calculator-api",
   "version": "1.0.0",
   "description": "A nodejs calculator api",
-  "main": "server.js",
+  "main": "server.js,index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.web.fh-kufstein.ac.at:gunharth/calculator.git"
+  },
   "scripts": {
     "start": "nodemon server.js"
   },
@@ -19,9 +23,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@gitlab.web.fh-kufstein.ac.at:gunharth/calculator.git"
   }
 }
