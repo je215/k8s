@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deployment
+  labels:
+    app: front
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+      - name: front
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 3000
+
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-service
+spec:
+  selector:
+    app: front
+  ports:
+    - protocol: TCP
+      port: 3000  # Port your service A is listening on
+      targetPort: 3000
+
+
+........................................
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-deployment
+  labels:
+    app: back
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+      - name: back
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 3001
+
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-service
+spec:
+  selector:
+    app: back
+  ports:
+    - protocol: TCP
+      port: 3001  # Port your service A is listening on
+      targetPort: 3001
+
+
+
+..................................
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+    - host: frontend-service.local  # Use the hostname or IP address
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: front-end-service
+                port:
+                  number: 80
+    - host: backend-service.local   # Use the hostname or IP address
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: back-end-service
+                port:
+                  number: 3000
