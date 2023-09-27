@@ -16,7 +16,7 @@ Install all dependencies. This also installs all dependencies for web and api
 ```
 npm install
 ```
-Start and open the frontend on localhost:3000. Start the backend on localhost:3001.
+Start and open the frontend on 0.0.0.0:3000. Start the backend on 0.0.0.0:3001.
 ```
 npm start
 ```

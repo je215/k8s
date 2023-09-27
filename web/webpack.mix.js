@@ -27,7 +27,7 @@ mix.js('src/app.js', 'public/js').sass('src/app.scss', 'public/css').extract();
 mix.copy('src/index.html', 'public/index.html');
 
 // mix.browserSync({
-//     proxy: 'localhost:3000',
+//     proxy: '0.0.0.0:3000',
 //     port: 3002,
 //     ui: {
 //         port: 3003
